@@ -17,7 +17,9 @@ after_success:
 - git rm docs
 - mv output docs
 - git add docs
+- git config --global user.email "kordex@gmail.com"
+- git config --global user.name "Motoko Kusanagi"
 - git commit -m "Generated default branch on $(date +%s)"
-- git push origin master || true
+- (eval $(ssh-agent) && ssh-add .travis/id_rsa && git push origin master) || true
 after_failure:
 - true
