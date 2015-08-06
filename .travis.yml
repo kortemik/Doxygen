@@ -11,8 +11,7 @@ install:
 - sudo apt-get install graphviz
 script:
 - git clone https://github.com/OpenTechEngine/OpenTechBFG.git
-- while true; do sleep 30; date; done &
-- doxygen Doxyfile > /dev/null
+- doxygen Doxyfile
 after_success:
 - rm -rf OpenTechEngine
 - git add docs > /dev/null
