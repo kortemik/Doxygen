@@ -1,30 +1,23 @@
 language: cpp
 os:
-  - linux
+- linux
 compiler:
-  - true
-
+- true
 before_install:
-  # this is allowed to fail so that pull requests can be built too
-  - openssl aes-256-cbc -K $encrypted_24fdd259e571_key -iv $encrypted_24fdd259e571_iv -in .travis/id_rsa.enc -out .travis/id_rsa -d || true
-
+- openssl aes-256-cbc -K $encrypted_120d59ab54fb_key -iv $encrypted_120d59ab54fb_iv -in id_rsa.enc -out id_rsa -d || true
 install:
- - sudo apt-get update -qq
- - sudo apt-get install doxygen
- - sudo apt-get install graphviz
-
-script: 
- - git clone https://github.com/OpenTechEngine/OpenTechBFG.git
- - doxygen Doxyfile
-
+- sudo apt-get update -qq
+- sudo apt-get install doxygen
+- sudo apt-get install graphviz
+script:
+- git clone https://github.com/OpenTechEngine/OpenTechBFG.git
+- doxygen Doxyfile
 after_success:
- - rm -rf OpenTechEngine
- - git rm docs
- - mv output docs
- - git add docs
- - git commit -m "Generated default branch on $(date +%s)"
-# allowed to fail at the moment
- - git push origin master || true
-
+- rm -rf OpenTechEngine
+- git rm docs
+- mv output docs
+- git add docs
+- git commit -m "Generated default branch on $(date +%s)"
+- git push origin master || true
 after_failure:
- - true
+- true
