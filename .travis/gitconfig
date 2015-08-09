@@ -9,6 +9,3 @@
         depth = 1
         deltaCacheSize = 1
         packSizeLimit = 56m
-[user]
-        name = Motoko Kusanagi
-        email = kordex@gmail.com
