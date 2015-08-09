@@ -1,0 +1,14 @@
+[core]
+        packedGitWindowSize = 1m
+        packedGitLimit = 128m
+
+[pack]
+        windowMemory = 16m
+        threads = 1
+        window = 0
+        depth = 1
+        deltaCacheSize = 1
+        packSizeLimit = 56m
+[user]
+        name = Motoko Kusanagi
+        email = kordex@gmail.com

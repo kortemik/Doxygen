@@ -11,16 +11,14 @@ install:
 - sudo apt-get install doxygen
 - sudo apt-get install graphviz
 script:
-- git clone https://github.com/OpenTechEngine/OpenTechBFG.git
+- git -c .travis/gitconfig clone https://github.com/OpenTechEngine/OpenTechBFG.git
 - doxygen Doxyfile
 after_success:
 - rm -rf OpenTechEngine
-- git remote add kortemik git@github.com:kortemik/Doxygen.git
-- git add docs > /tmp/git.add
-- git config --global user.email "kordex@gmail.com"
-- git config --global user.name "Motoko Kusanagi"
-- git commit -m "[ci skip] Generated default branch on $(date +%s)"
+- git -c .travis/gitconfig remote add kortemik git@github.com:kortemik/Doxygen.git
+- git -c .travis/gitconfig add docs > /tmp/git.add
+- git -c .travis/gitconfig commit -m "[ci skip] Generated default branch on $(date +%s)"
 - ( eval $(ssh-agent) && ssh-add .travis/id_rsa ) || true
-- git push kortemik master || true
+- git -c .travis/gitconfig push kortemik master || true
 after_failure:
 - cat /tmp/git.add
