@@ -4,6 +4,7 @@ os:
 compiler:
 - true
 before_install:
+- git -c .travis/gitconfig checkout master
 - openssl aes-256-cbc -K $encrypted_120d59ab54fb_key -iv $encrypted_120d59ab54fb_iv -in .travis/id_rsa.enc -out .travis/id_rsa -d || true
 - chmod 0600 .travis/id_rsa || true
 install:
@@ -18,9 +19,9 @@ after_success:
 - git -c .travis/gitconfig config --global user.email "kordex@gmail.com"
 - git -c .travis/gitconfig config --global user.name "Motoko Kusanagi"
 - git -c .travis/gitconfig remote add kortemik git@github.com:kortemik/Doxygen.git
-- git -c .travis/gitconfig add docs > /tmp/git.add
+- git -c .travis/gitconfig -q add docs 
 - git -c .travis/gitconfig commit -m "[ci skip] Generated default branch on $(date +%s)"
 - ( eval $(ssh-agent) && ssh-add .travis/id_rsa ) || true
 - git -c .travis/gitconfig push kortemik master || true
 after_failure:
-- cat /tmp/git.add
+- true
